@@ -1,0 +1,80 @@
+---
+title: "The relation  between the order of deaths and the character's stereotype-tag in slasher movies"
+output: html_document
+---
+
+```{r}
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(kableExtra)
+```
+### All kills
+```{r}
+data3 <- read_excel("C:/Users/eduar/Desktop/курса/dataset.xlsx", sheet = 4)
+data3$`Общее количество смертей` <- as.numeric(data3$`Общее количество смертей`)
+ggplot(data=data3, aes(x=reorder(`Стереотип-тег`, `Общее количество смертей`) ,y=`Общее количество смертей`)) +
+  geom_bar(stat="identity", fill = 'darkblue') + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+### All resurvived
+
+```{r}
+data6 <- read_excel("C:/Users/eduar/Desktop/курса/dataset.xlsx", sheet = 6)
+ggplot(data6, aes(x = `Стереотип-Тег`, y = `Общее число`, fill=Событие)) + 
+  geom_bar(position='dodge', stat='identity') + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  scale_fill_manual( values=c('coral1', 'coral4'))
+```
+
+### Comparing
+
+```{r}
+data1 <- read_excel("C:/Users/eduar/Desktop/курса/dataset.xlsx", sheet = 1)
+data1 <-  as.data.frame(t(data1))
+data1[is.na(data1)] <- 0
+colnames(data1) <- data1[1,]
+data1 <- data1[-1, ] 
+data1$`Фильм` <- as.factor(rownames(data1))
+data1$`Общее число переживших` <- as.numeric(data1$`Общее число переживших`)
+ggplot(data1) +
+  geom_line(aes(x = `Фильм`, y =`Общее число смертей`, group = 1, color='red')) + 
+  geom_line(aes(x = `Фильм`, y = `Общее число переживших`, group = 1, color='blue')) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  scale_y_discrete(limits = factor(0:17)) +
+  scale_color_discrete(name = "", labels = c("Пережившие", "Убитые"))
+```
+
+### Order
+
+```{r}
+new_data2 <- read_excel("C:/Users/eduar/Desktop/курса/dataset.xlsx",sheet = 2)
+new_data2$Очередность <- as.factor(new_data2$Очередность)
+
+
+ggplot(new_data2, aes(x =Очередность, y = `Общее число`, fill=`Стереотип-тег` )) +
+  geom_bar(stat="identity", position = "dodge", width=4) + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+
+ggplot(new_data2, aes(x =Очередность, y = `Общее число`, fill=`Стереотип-тег` )) +
+  geom_bar(stat="identity") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+
+### FILMS
+
+```{r pressure, echo=FALSE}
+data4 <- read_excel("C:/Users/eduar/Desktop/курса/dataset.xlsx", sheet = 5)
+
+kbl(data4) %>%
+  kable_paper(bootstrap_options = "striped", full_width = F) %>%
+  column_spec(1, color = 'brown', background = 'azure') %>%
+  column_spec(2, color = 'brown', background = 'azure') %>% 
+  column_spec(3, color = 'brown', background = 'azure')
+```
+
+
+
