@@ -1,7 +1,7 @@
 # Исследование связи между очередностью смертей и ролевым стереотип-тегом персонажа в фильмах жанра слэшер
 ## *The relation  between the order of deaths and the character's stereotype-tag in slasher movies*
 
-### [Текст](https://github.com/edouardmiller/Coursework/blob/main/Курсовая.docx) курсовой работы.
+### [Текст](https://drive.google.com/drive/u/0/my-drive) курсовой работы.
 #### Выявленные в ходе анализа [стереотип-теги персонажей](https://github.com/edouardmiller/Coursework/blob/main/Стереотип-теги.docx)
 #### [Dataset](https://github.com/edouardmiller/Coursework/blob/main/dataset.xlsx) для создания барчартов
 ##### [История создания](https://github.com/edouardmiller/Coursework/tree/main/таблицы) датасета
