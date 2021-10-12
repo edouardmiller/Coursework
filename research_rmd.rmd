@@ -30,7 +30,7 @@ ggplot(data6, aes(x = `Стереотип-Тег`, y = `Общее число`, 
 
 ### Comparing
 
-```{r}
+```{r fig.width = 7, fig.height = 6}
 data1 <- read_excel("C:/Users/eduar/Desktop/курса/dataset.xlsx", sheet = 1)
 data1 <-  as.data.frame(t(data1))
 data1[is.na(data1)] <- 0
@@ -43,7 +43,8 @@ ggplot(data1) +
   geom_line(aes(x = `Фильм`, y = `Общее число переживших`, group = 1, color='blue')) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   scale_y_discrete(limits = factor(0:17)) +
-  scale_color_discrete(name = "", labels = c("Пережившие", "Убитые"))
+  scale_color_discrete(name = "", labels = c("Пережившие", "Убитые"))+
+  scale_x_discrete(limits= c('Кровавая вечеринка',  'Последний экзамен'  ,'Пятница 13'  ,'Смертельная забава',  'Сожжение',  'Техасская резня бензопилой'  ,'Школьный бал' , 'Расчленитель',  'День дурака'  ,'Попкорн'  ,'Пятница 13 Новая кровь',  'Спящий лагерь 2',  'У холмов есть глаза 2',  'Городские легенды',  'День святого', 'Валентина',  'Крик',  'Крик 2',  'Крик 3',  'Убийства в Черри Фолс',  'Я знаю, что вы сделали прошлым летом'))
 ```
 
 ### Order
